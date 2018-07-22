@@ -116,7 +116,7 @@ const styles = theme => ({
     right: theme.spacing.unit * 2
   },
   eventContent:{
-      padding: theme.spacing.unit
+    padding: theme.spacing.unit
   }
 });
 
@@ -217,7 +217,7 @@ class Event extends React.Component {
                                                     )
                                                 }
                                             </div>
-                                            <div>
+                                            <div className='rsvpContainer'>
                                                 <a href={event.url} style={{textDecoration: 'none'}}>
                                                     <Button size="large" variant={"raised"} color="secondary" className={classNames(classes.button)}>
                                                         RSVP

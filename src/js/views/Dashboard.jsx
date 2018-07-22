@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
-
 import ReactGA from 'react-ga';
 import PaperSheet from '../component/PaperSheet.jsx';
 import EventPaperSheet from '../component/EventPaperSheet.jsx';
@@ -48,14 +47,22 @@ const styles = theme => ({
     alignSelf: 'center'
   },
   heroUnit:{
-      display: "flex", 
-      justifyContent: "center",
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-      alignItems: "baseline",
-      padding: "50px",
-      flexWrap: "wrap",
-      textAlign: "center"
+    display: "flex", 
+    justifyContent: "center",
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    alignItems: "baseline",
+    padding: "50px",
+    flexWrap: "wrap",
+    textAlign: "center"
+  },
+  stickyBar:{
+    padding:"16px 0 0 0", 
+    display: "flex", 
+    flexDirection: "row", 
+    flexWrap: "wrap", 
+    zIndex: 10, 
+    justifyContent: "center"
   },
   inlineForm:{
       margin: "0 10px",
@@ -65,7 +72,6 @@ const styles = theme => ({
   primaryTextColor:{
       color: theme.palette.primary.contrastText
   }
-  
 });
 
 class Dashboard extends React.Component {
@@ -93,7 +99,9 @@ class Dashboard extends React.Component {
         return(
             <div style={{flexGrow:1}}>
                 <div className={classes.heroUnit} id="heroUnit-main">
-                    <Typography component="h1" variant="display1" color="inherit" className={classes.heroText}>Select a location:  </Typography>
+                    <Typography component="h1" variant="display1" color="inherit" className={classes.heroText}>
+                        Select a location:  
+                    </Typography>
                     <form autoComplete="off">
                         <FormControl className={classes.inlineForm} id="heroSelect">
                             <Consumer>
@@ -123,18 +131,16 @@ class Dashboard extends React.Component {
                             </Consumer>
                         </FormControl>
                     </form> 
-                    <Typography component="h1" variant="display1" color="inherit" className={classes.heroText}>to discover our available courses, workshops and events.</Typography>
-                    
+                    <Typography component="h1" variant="display1" color="inherit" className={classes.heroText}>
+                        to discover our available courses, workshops and events.
+                    </Typography>
                 </div>
                 <Grid container spacing={0} style={{justifyContent: 'center'}} >
-                    <AppBar style={{padding:"16px 0 0 0", display: "flex", flexDirection: "row", flexWrap: "wrap", zIndex: 10, justifyContent: "center"}} position="sticky" color="default">
+                    <AppBar className={classes.stickyBar} position="sticky" color="default">
                         <div style={{display: "flex", flexWrap: "no-wrap", alignItems: "baseline"}}>
-                            <Typography component="h1" variant="headline" style={{fontSize:"1.2rem"}}>
-                                Showing 
-                            </Typography>
                             <form autoComplete="off">
-                                <FormControl className={classes.inlineForm} style={{fontSize:"0.70rem", minWidth:"80px"}}>
-                                    <InputLabel htmlFor="filter-simple">Type</InputLabel>
+                                <FormControl className={classes.inlineForm}>
+                                    <InputLabel htmlFor="filter-simple">Type of event</InputLabel>
                                     <Select
                                         value={this.state.filter}
                                         onChange={this.handleChange}
@@ -142,6 +148,7 @@ class Dashboard extends React.Component {
                                             name: 'filter',
                                             id: 'filter-simple'
                                         }}
+                                        style={{fontSize: '1.2rem'}}
                                         >
                                         <MenuItem value="All">
                                             <em>All</em>
@@ -158,12 +165,9 @@ class Dashboard extends React.Component {
                             </form>
                         </div>
                         <div style={{display: "flex", flexWrap: "no-wrap", alignItems: "baseline"}}>
-                            <Typography component="h1" variant="headline" style={{fontSize:"1.2rem"}}>
-                                on  
-                            </Typography>
                             <form autoComplete="off">
-                                <FormControl className={classes.inlineForm} style={{fontSize:"0.70rem" , minWidth:"80px"}}>
-                                    <InputLabel htmlFor="language-simple">Languages</InputLabel>
+                                <FormControl className={classes.inlineForm}>
+                                    <InputLabel htmlFor="language-simple">Language</InputLabel>
                                     <Select
                                         value={this.state.languageFilter}
                                         onChange={this.handleChange}
@@ -171,6 +175,7 @@ class Dashboard extends React.Component {
                                             name: 'languageFilter',
                                             id: 'language-simple'
                                         }}
+                                        style={{fontSize: '1.2rem'}}
                                         >
                                         <MenuItem value="All">
                                             <em>All</em>
