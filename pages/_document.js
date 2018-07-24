@@ -20,6 +20,11 @@ class MyDocument extends Document {
               'minimum-scale=1, width=device-width, height=device-height'
             }
           />
+          <meta name="msapplication-TileColor" content="#000000"/>
+          <meta name="apple-mobile-web-app-title" content="Hacker News" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="mobile-web-app-capable" content="yes" />
           <link rel="manifest" href="/static/manifest.json"/>
           <link rel="shortcut icon" href="/static/favicon.ico"/>
           <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"/>
@@ -27,7 +32,6 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
           <link rel="manifest" href="/static/site.webmanifest"/>
           <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5"/>
-          <meta name="msapplication-TileColor" content="#000000"/>
         
           {/* PWA primary color */}
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />

@@ -562,56 +562,17 @@ class MyApp extends App {
 
   }
   
-  static async getInitialProps(){
+  static async getInitialProps({ Component, router, ctx }){
+    let pageProps = {}
+
+    //console.log(Component);
     
-    let events = [];
-    try{
-        const res = await fetch('https://assets.breatheco.de/apis/event/all');
-        const data = await res.json();
-        events = data.filter( event => Moment(event.event_date).diff( Moment(), "d" ) > 0 );
-    } catch(e){
-        console.log(e);
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
     }
     
-    let courses = [];
-    try{
-        const resCourses = await fetch('https://www.4geeksacademy.co/wp-json/4g/v1/courses');
-        const dataCourses = await resCourses.json();
-        const now = Moment();
-        courses = dataCourses.map( (course) =>{
-                            course["type"] = "course";
-                            course["finished"] = true;
-                            course["title"] = course.name;
-                            course["description"] = course.short_description;
-                            //let event_date 
-                            course["event_date"] = Moment(course.date, "MMMM D, YYYY").isValid() ? Moment(course.date,"MMMM D, YYYY").format("YYYY-MM-DD HH:mm:ss") : now;
-                            //course["event_date"] = event_date.format("YYYY-MM-DD HH:mm:ss");
-                            course["lang"] = course.language.toLowerCase().substring(0,2);
-                            course["location_slug"] = course.bc_location_slug;
-                            course["banner_url"] = course.featured_image;
-                            course["address"] = course.location;
-                            course["url"] = "https://www.4geeksacademy.co/course/"+course.slug;
-                            
-                            return course;
-                        });
-    } catch(e){
-        console.log(e);
-    }
-    
-    let locations = [];
-    try{
-        const resLocations = await fetch('https://api.breatheco.de/locations/');
-        const dataLocations = await resLocations.json();
-        locations = dataLocations.data;
-    } catch(e){
-        console.log(e);
-    }
-    
-    return {
-        events: events,
-        courses: courses,
-        locations: locations
-    }
+    //console.log(pageProps);
+    return {pageProps};
   }
 
   pageContext = null;
@@ -625,9 +586,8 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, router, events, courses, locations } = this.props;
-    const allEvents = events.filter( event => Moment(event.event_date).diff( Moment(), "d" ) > 0 ).concat(courses).sort((a, b) => Moment(a.event_date).unix() - Moment(b.event_date).unix()); 
-
+    const { Component, pageProps } = this.props;
+    
     return (
       <Container>
         {/* Wrap every page in Jss and Theme providers */}
@@ -647,12 +607,8 @@ class MyApp extends App {
                 to render collected styles on server side. */}
             <Header />
             <Component 
-                pageContext={this.pageContext} 
-                router={router} 
+                pageContext={this.pageContext}
                 {...pageProps} 
-                events={allEvents} 
-                locations={locations}
-                eventOnly={events}
             />
           </MuiThemeProvider>
         </JssProvider>

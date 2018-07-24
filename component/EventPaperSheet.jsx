@@ -108,7 +108,7 @@ class EventPaperSheet extends React.Component {
                 <div className={classes.fixItem}>
                     { event.type !== 'course' ? 
                         (
-                          <Link href={'/event/'+event.id}> 
+                          <Link prefetch href={'/event/'+event.id}> 
                             <a>{titleComp}</a>
                           </Link>
                         ) 

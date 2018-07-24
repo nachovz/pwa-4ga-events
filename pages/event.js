@@ -48,8 +48,9 @@ import {
 import Router from 'next/router';
 import ReactPlaceholder from 'react-placeholder';
 import "react-placeholder/lib/reactPlaceholder.css";
+import fetch from 'isomorphic-unfetch';
 
-//import {Consumer} from '../stores/AppContext.jsx';
+import Striptags from 'striptags';
 
 const styles = theme => ({
   card: {
@@ -132,7 +133,7 @@ class Event extends Component {
         
         this.state = {
             event: {},
-            ready: false
+            ready: typeof props.event.id !== 'undefined'
         }
         
         this.actions = {
@@ -173,26 +174,48 @@ class Event extends Component {
         }
     }
     
-    static getInitialProps(props){
-        return{id: props.query.id };
+    static async getInitialProps( { query } ){
+        let event= {};
+        try{
+            const res = await fetch('https://assets.breatheco.de/apis/event/'+query.id);
+            const data = await res.json();
+            event = data;
+        } catch(e){
+            console.log(e);
+            /*event = {
+                      "description": "<h2>4Geeks Nights - Learn to Code for Free</h2><p>Coding is no longer a dream. We are closing the gap and bringing coding to your life. A master platform, full of exercises and content, for free.</p><p>To begin, we will give you free access to our Coding Introduction Program, where you will find everything you need to start your training as a software developer. HTML, CSS, Bootstrap, JavaScript and more. This is not only reading, videos, and tutorials, but tons of exercises and projects to work with.</p><p><br></p><p>We have&nbsp;at least five&nbsp;GREAT reasons why you should&nbsp;attend&nbsp;our 4Geeks Nights event on June&nbsp;28th:</p><p><br></p><p>- You will&nbsp;have&nbsp;FREE access to the Coding Intro Program and platform.&nbsp;Learning&nbsp;to Code has never been easy and&nbsp;better.</p><p><br></p><p>- You will&nbsp;receive&nbsp;free mentorship hours every&nbsp;week.</p><p><br></p><p>- Our Career Support program speaks for&nbsp;itself…You&nbsp;will meetsome of&nbsp;our&nbsp;Alumni and hear about their personal projects and overall experience&nbsp;at 4Geeks!</p><p><br></p><p>- You will have fun while meeting our entire team &amp; office: Founders, instructors, partners and classroom spaces. Have a drink with us!</p><p><br></p><p>- You will get the details about our Software Program. Full Stack + Part-time + Premium Education + Best pricing&nbsp;options.</p><p><br></p><p>- Play Kill the Bug and earn a prize!</p><p><br></p><p>We are launching new programs every two months&nbsp;and you canbecome part of our&nbsp;next 4Geeks Alumni as a Full-Stack Software Developer. Get ready to change your&nbsp;life!</p><p><br></p><p>Come. Have fun. Learn to Code. Let's celebrate together our way of making Coding a possibility&nbsp;to your current or new career.</p><p><br></p><p>A little bit about our program:</p><p><br></p><p>Become a software developer in 16 weeks, with a part-time/blended methodology and with pricing options starting at$140/mo.&nbsp;You will get&nbsp;over&nbsp;320 hours of&nbsp;training in&nbsp;a gamified program designed to be 100% hands-on.</p><p><br></p><p>Our Syllabus is based on&nbsp;JavaScript, React JS, Python, Django, Mongo DB, AJAX, API,&nbsp;and&nbsp;other exciting technologies. You will be trained in the most&nbsp;desired&nbsp;technologies in&nbsp;Miami in exactlywhat companies are looking for!</p><p><br></p><p>NOTE: Our programs&nbsp;have a maximum capacity of 14&nbsp;students, so there are only a few spots availableper cohort. Just click here if you want to meet with us.&nbsp;The next program&nbsp;will start&nbsp;on August 13th.&nbsp;This is your chance to understand how Coding will change your professional life!</p>",
+                      "title": "4Geeks Nights: INFO+CODING+GAMES+DRINKS",
+                      "url": "https://www.eventbrite.com/e/4geeks-nights-infocodinggamesdrinks-tickets-47588520546",
+                      "capacity": "100",
+                      "event_date": "2018-07-28 06:00:00",
+                      "type": "4geeks_night",
+                      "address": "66 West Flagler Street  #900",
+                      "location_slug": "downtown-miami",
+                      "lang": "en",
+                      "city_slug": "miami",
+                      "banner_url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46680560%2F154764716258%2F1%2Foriginal.jpg?rect=0%2C60%2C960%2C480&auto=compress&w=2000&s=af8051ba98cddee95edbcd4ec904f334",
+                      "invite_only": "false",
+                      "created_at": "2018-06-29 10:31:56",
+                      "id": "2",
+                      "status": "published",
+                      "logo_url": null
+                                            };*/
+        }
+        
+        //console.log("HOLA :"+context);
+        //const userAgent = context.req ? context.req.headers['user-agent'] : navigator.userAgent;
+        return { event };
     }
     
     componentDidMount(){
-        this.actions.loadApiData();
+        //this.actions.loadApiData();
     }
     
     render(){
-        const { classes } = this.props;
-        //const theid = this.props.id;
-        const url = typeof window !== 'undefined'  ? window.location.href : this.props.router.asPath;
-        //console.log(eventOnly);
-        //ReactGA.pageview(window.location.pathname + window.location.search);
-        //const event = eventOnly.find( event => parseInt(event.id, 10) === parseInt(theid, 10) );
+        const { classes, event } = this.props;
+        const url = typeof window !== 'undefined'  ? window.location.href : "";
         
-        //if(typeof event === 'undefined') return( 
-            
-            //);
-        const event = this.state.event;
+        //ReactGA.pageview(window.location.pathname + window.location.search);
         let eventDay, eventTime = eventDay = "TBA";
         let description, cleanedDescription = description = "";
         if( event.event_date !== null && typeof event.event_date !== 'undefined' ){
@@ -202,13 +225,12 @@ class Event extends Component {
             eventDay = eventDay.format("MMMM D").toString();
             
             description = ReactHtmlParser(event.description.replace(/<br>/g, ''));
-            var doc = new DOMParser().parseFromString(event.description, 'text/html');
-            cleanedDescription = doc.body.textContent || "";
+            cleanedDescription = Striptags(event.description);
             cleanedDescription = cleanedDescription.substring(0, cleanedDescription.indexOf('.',200)+1)
         }
         
         return (
-            <ReactPlaceholder style={{marginTop: 16}} showLoadingAnimation={true} type='media' ready={this.state.ready} rows={4}>
+            <ReactPlaceholder style={{marginTop: 16, padding: "0 16px"}} showLoadingAnimation={true} type='media' ready={this.state.ready} rows={4}>
                 <Head>
                     <link rel="canonical" href={url} />
                     <link rel="manifest" href="/static/manifest.json" />
