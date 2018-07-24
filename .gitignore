@@ -23,7 +23,7 @@ yarn-error.log*
 #next
 # build output
 dist
-.next
+/.next
 
 # dependencies
 node_modules
