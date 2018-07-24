@@ -174,7 +174,6 @@ class Event extends Component {
     }
     
     static getInitialProps(props){
-        //console.log(props);
         return{id: props.query.id };
     }
     
