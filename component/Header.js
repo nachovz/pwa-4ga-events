@@ -17,7 +17,7 @@ export default () => {
             <Head>
                 {/* Import CSS for nprogress */}
                 <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' />
-                
+                <link rel="stylesheet" href="/static/style.css"/>
             </Head>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark custom-4ga-navbar">
                 

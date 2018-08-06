@@ -155,8 +155,8 @@ class Dashboard extends React.Component {
         
         return(
             <div style={{flexGrow:1}}>
-            
                 <Head>
+                    <title>4Geeks Academy's Events</title>
                     <link rel="canonical" href={url} />
                     <meta name="description" content="4Geeks Academy: one app for all Events." />
                     <meta property="og:type" content="article"/>  

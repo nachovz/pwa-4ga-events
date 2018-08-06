@@ -20,7 +20,7 @@ export default class Layout extends React.Component {
     super();
     
     this.state = {
-            "events":[
+            "events":[/*
                         {
                         "description": "<p>An event for all the blockchain developers to meet</p>",
                         "title": "Blockchain coders gather up ",
@@ -265,7 +265,7 @@ export default class Layout extends React.Component {
                         lang: "en",
                         "address": null,
                         finished: true
-                        }
+                        }*/
                     ],
             "courses":[/*
                           {
@@ -416,7 +416,7 @@ export default class Layout extends React.Component {
                             "location_id": 145
                           }*/
                         ],
-            "locations": [
+            "locations": [/*
                             {
                                 id: 1,
                                 slug: "impact-hub",
@@ -479,7 +479,7 @@ export default class Layout extends React.Component {
                                 address: "0",
                                 created_at: "2017-09-17 13:03:52",
                                 updated_at: "2017-09-17 13:03:52"
-                                }
+                                }*/
                             ]
         };
         

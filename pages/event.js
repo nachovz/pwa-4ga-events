@@ -232,6 +232,7 @@ class Event extends Component {
         return (
             <ReactPlaceholder style={{marginTop: 16, padding: "0 16px"}} showLoadingAnimation={true} type='media' ready={this.state.ready} rows={4}>
                 <Head>
+                    <title>{event.title}</title>
                     <link rel="canonical" href={url} />
                     <link rel="manifest" href="/static/manifest.json" />
                     <meta name="theme-color" content="#ff6600" />
