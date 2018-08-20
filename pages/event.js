@@ -134,7 +134,7 @@ class Event extends Component {
         this.state = {
             event: {},
             ready: typeof props.event.id !== 'undefined'
-        }
+        };
         
         this.actions = {
             loadApiData: () => {
@@ -226,7 +226,7 @@ class Event extends Component {
             
             description = ReactHtmlParser(event.description.replace(/<br>/g, ''));
             cleanedDescription = Striptags(event.description);
-            cleanedDescription = cleanedDescription.substring(0, cleanedDescription.indexOf('.',200)+1)
+            cleanedDescription = cleanedDescription.substring(0, cleanedDescription.indexOf('.',200)+1);
         }
         
         return (

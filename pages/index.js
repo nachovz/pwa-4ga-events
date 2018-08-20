@@ -11,12 +11,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {Helmet} from "react-helmet";
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import Moment from 'moment';
-
-//import {Consumer} from '../stores/AppContext.jsx';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -136,6 +133,18 @@ class Dashboard extends React.Component {
         
         return { events, locations, courses }
     }
+    
+    /*componentDidMount(){
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+              console.log('SW registered: ', registration)
+            }).catch(function (registrationError) {
+              console.log('SW registration failed: ', registrationError)
+            })
+          })
+        }
+    }*/
     
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });

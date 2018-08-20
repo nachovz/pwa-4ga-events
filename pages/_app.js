@@ -4,12 +4,10 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from '../stores/getPageContext';
-import Moment from 'moment';
-import fetch from 'isomorphic-unfetch';
 
 import Header from '../component/Header';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.min.css';
-import '../static/css/index.css';
+//import '../static/css/index.css';
 
 class MyApp extends App {
   constructor(props) {

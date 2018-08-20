@@ -39,11 +39,13 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+          <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' />
+          <link rel="stylesheet" type='text/css' href="/static/css/bootstrap.min.css"/>
+          <link rel="stylesheet" type='text/css' href="/static/css/index.css"/>
         </Head>
         <body>
           <noscript>You need to enable JavaScript to run this app.</noscript>
           <Main />
-          
           <NextScript />
         </body>
       </html>
