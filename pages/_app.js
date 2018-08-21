@@ -6,7 +6,6 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from '../stores/getPageContext';
 
 import Header from '../component/Header';
-//import 'bootstrap-material-design/dist/css/bootstrap-material-design.min.css';
 import '../bootstrap.min.css';
 import '../nprogress.css';
 import '../index.css';
@@ -563,15 +562,11 @@ class MyApp extends App {
   }
   
   static async getInitialProps({ Component, router, ctx }){
-    let pageProps = {}
-
-    //console.log(Component);
+    let pageProps = {};
     
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps(ctx);
     }
-    
-    //console.log(pageProps);
     return {pageProps};
   }
 

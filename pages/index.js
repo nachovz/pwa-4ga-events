@@ -58,7 +58,7 @@ const styles = theme => ({
     textAlign: "center"
   },
   stickyBar:{
-    padding:"16px 0 0 0", 
+    padding:"16px 0", 
     display: "flex", 
     flexDirection: "row", 
     flexWrap: "wrap", 
@@ -72,6 +72,9 @@ const styles = theme => ({
   },
   primaryTextColor:{
       color: theme.palette.primary.contrastText
+  },
+  inputLabelContrast:{
+      color: theme.palette.primary.main
   }
 });
 
@@ -134,18 +137,6 @@ class Dashboard extends React.Component {
         return { events, locations, courses }
     }
     
-    /*componentDidMount(){
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
-              console.log('SW registered: ', registration)
-            }).catch(function (registrationError) {
-              console.log('SW registration failed: ', registrationError)
-            })
-          })
-        }
-    }*/
-    
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -195,12 +186,9 @@ class Dashboard extends React.Component {
                                 style={{border: "1px solid white", padding: "0 5px", fontSize:"2em"}}
                                 >
                                 <MenuItem value="All">
-                                    <em>All ({/*this.actions.getAllEvents().length*/allEvents.length})</em>
+                                    <em>All ({allEvents.length})</em>
                                 </MenuItem>
                                 {
-                                    /*this.actions.getAllLocations().map( (locat, index) => {
-                                        return <MenuItem value={locat.slug} key={index}>{locat.name} ({locat.count})</MenuItem>;
-                                    })*/
                                     locations.map( (locat, index) => {
                                         return <MenuItem value={locat.slug} key={index}>{locat.name} ({locat.count})</MenuItem>;
                                     })
@@ -217,7 +205,7 @@ class Dashboard extends React.Component {
                         <div style={{display: "flex", flexWrap: "no-wrap", alignItems: "baseline"}}>
                             <form autoComplete="off">
                                 <FormControl className={classes.inlineForm}>
-                                    <InputLabel htmlFor="filter-simple">Type of event</InputLabel>
+                                    <InputLabel htmlFor="filter-simple" className={classes.inputLabelContrast}>Type of event</InputLabel>
                                     <Select
                                         value={this.state.filter}
                                         onChange={this.handleChange}
@@ -244,7 +232,7 @@ class Dashboard extends React.Component {
                         <div style={{display: "flex", flexWrap: "no-wrap", alignItems: "baseline"}}>
                             <form autoComplete="off">
                                 <FormControl className={classes.inlineForm}>
-                                    <InputLabel htmlFor="language-simple">Language</InputLabel>
+                                    <InputLabel htmlFor="language-simple" className={classes.inputLabelContrast}>Language</InputLabel>
                                     <Select
                                         value={this.state.languageFilter}
                                         onChange={this.handleChange}
