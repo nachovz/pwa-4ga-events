@@ -14,7 +14,7 @@ Router.onRouteChangeError = () => NProgress.done()
 export default () => {
     return(
         <React.Fragment>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark custom-4ga-navbar">
+            <nav className={"navbar navbar-expand-lg navbar-dark bg-dark custom-4ga-navbar"}>
                 
                 <Link href="/">
                     <a className="navbar-brand">

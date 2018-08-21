@@ -1,0 +1,30 @@
+.custom-4ga-navbar {
+  background-color: #3f3f3f !important; }
+
+#heroSelect svg {
+  color: #fff; }
+
+@media only screen and (max-width: 600px) {
+  #heroUnit-main {
+    padding: 25px; }
+  #heroUnit-main h1 {
+    font-size: 1.2rem;
+    line-height: 1.8rem; }
+  #heroUnit-main div {
+    font-size: 1.2rem !important; }
+  #heroUnit-main form {
+    width: 100%;
+    margin-bottom: 0; } 
+  .rsvpContainer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #fabButton {
+    right: 20vw; } }
+
+#heroUnit-main .MuiSvgIcon-root-57 {
+  color: white !important; }

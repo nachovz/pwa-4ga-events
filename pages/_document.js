@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 
+
 class MyDocument extends Document {
   render() {
     const { pageContext } = this.props;
@@ -30,7 +31,6 @@ class MyDocument extends Document {
           <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"/>
           <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"/>
           <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
-          <link rel="manifest" href="/static/site.webmanifest"/>
           <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5"/>
         
           {/* PWA primary color */}
@@ -39,9 +39,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
-          <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' />
-          <link rel="stylesheet" type='text/css' href="/static/css/bootstrap.min.css"/>
-          <link rel="stylesheet" type='text/css' href="/static/css/index.css"/>
+          <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <body>
           <noscript>You need to enable JavaScript to run this app.</noscript>

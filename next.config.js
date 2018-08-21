@@ -4,7 +4,7 @@ const path = require('path')
 const withCSS = require('@zeit/next-css')
 const withPurgeCss = require('next-purgecss')
 
-module.exports = withCSS(withPurgeCss(
+module.exports = withCSS(
   {
     webpack:(config, {dev}) => {
       const oldEntry = config.entry
@@ -45,7 +45,7 @@ module.exports = withCSS(withPurgeCss(
     }
     
   }
-))
+)
 /*
 const withCSS = require('@zeit/next-css')
 module.exports = withCSS()
