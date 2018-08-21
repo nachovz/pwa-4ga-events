@@ -39,7 +39,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
-          <link rel="stylesheet" href="/_next/static/style.css" />
+          
         </Head>
         <body>
           <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -30,14 +30,6 @@ module.exports = withCSS(
             urlPattern: /^http.*/
           }]
         }))
-        
-        config.plugins = config.plugins.filter(
-          (plugin) => (plugin.constructor.name !== 'UglifyJsPlugin')
-        )
-        config.plugins.push(
-          new webpack.optimize.UglifyJsPlugin(),
-          new webpack.optimize.DedupePlugin()
-        )
       }
       
       
