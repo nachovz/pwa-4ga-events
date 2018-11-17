@@ -123,7 +123,9 @@ class Dashboard extends React.Component {
                                             {
                                                 actions.getAllLocations().map( (locat, index) => {
                                                     return <MenuItem value={locat.slug} key={index}>{locat.name} ({locat.count})</MenuItem>;
-                                                })
+                                                }) 
+                                                ||
+                                                ""
                                             }
                                         </Select>
                                     )

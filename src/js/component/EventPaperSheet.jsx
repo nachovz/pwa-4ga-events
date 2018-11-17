@@ -184,7 +184,7 @@ class EventPaperSheet extends React.Component {
                         </div>
                     </div>
                     <div className={classNames(classes.root2, classes.buttoners)}>
-                        <a href={event.url} target="_blank" style={{textDecoration: 'none'}}>
+                        <a href={event.url} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
                             <Button size="large" variant={"raised"} color="secondary" className={classNames(classes.button, classes[cta])}>
                                 {cta}
                             </Button>
